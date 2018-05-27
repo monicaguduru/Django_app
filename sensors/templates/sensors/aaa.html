@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+{% load staticfiles%}
+<html>
+<head>
+<script>
+window.onload = function () {
+
+//Better to construct options first and then pass it as a parameter
+var options = {
+	exportEnabled: true,
+	animationEnabled: true,
+	title: {
+		text: "jQuery Spline Area Chart"
+	},
+	data: [
+	{
+		type: "splineArea", //change it to line, area, bar, pie, etc
+		dataPoints: [
+			{ y: 0 },
+			{ y: 6 },
+			{ y: 1 },
+			{ y: 1 },
+			{ y: 19 },
+			{ y: 4 },
+			{ y: 6 },
+			{ y: 7 },
+			{ y: 2 }
+		]
+	}
+	]
+};
+$("#chartContainer").CanvasJSChart(options);
+
+}
+</script>
+</head>
+<body>
+<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+<script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+{% if all_sensors %}
+	<ul>
+		<center>
+		<h1>All past temperature values:</h1>
+		{% for album in all_sensors %}
+		{{ forloop.counter1 }} 
+		<li>{{ album.temperature }}  {{ album.humidity }}  {{ album.ps1 }}  {{ album.wl }}</li><center/>
+		{% endfor %}
+	</ul>
+{% else %}
+	<h3>You don't have any albums</h3>
+{% endif %}
+</body>
+</html>

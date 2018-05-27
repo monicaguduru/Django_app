@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyA-y6Imejvs-LOGEqFPq3dPHpeREmhlN0E &callback=initMap" type="text/javascript"></script><script type="text/javascript">// <![CDATA[
+var markers = [{"title":"society_1","lat":"13.5483","lng":"80.0002","description":"society1: water used-8,333 gallons  PROPER USAGE"},{"title":"society_2","lat":"13.5483","lng":"80.0004","description":"society2: water used-8,450 gallons  LITTLE EXCESS USAGE "},{"title":"society_3","lat":"13.5481","lng":"80.0000","description":"society3: water used-10,000 gallons  EXCESS USAGE "}];
+window.onload = function () {
+var mapOptions = {
+center: new google.maps.LatLng(markers[0].lat, markers[0].lng),
+zoom: 10,
+mapTypeId: google.maps.MapTypeId.ROADMAP
+};
+var map = new google.maps.Map(document.getElementById("dvMap"), mapOptions);
+var infoWindow = new google.maps.InfoWindow();
+var lat_lng = new Array();
+var latlngbounds = new google.maps.LatLngBounds();
+for (i = 0; i < markers.length; i++) {
+var data = markers[i]
+var myLatlng = new google.maps.LatLng(data.lat, data.lng);
+lat_lng.push(myLatlng);
+var marker = new google.maps.Marker({
+position: myLatlng,
+map: map,
+title: data.title
+});
+latlngbounds.extend(marker.position);
+(function (marker, data) {
+google.maps.event.addListener(marker, "click", function (e) {
+infoWindow.setContent(data.description);
+infoWindow.open(map, marker);
+});
+})(marker, data);
+}
+map.setCenter(latlngbounds.getCenter());
+map.fitBounds(latlngbounds);
+
+}
+</script>
+</head>
+
+<title>Map</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
+
+<style>
+body, html {height: 100%}
+body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
+.menu {display: none}
+.bgimg {
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+
+}</style>
+<body>
+
+
+<!-- Menu Container -->
+<div class="bgimg w3-container w3-gray w3-padding-64 w3-xxlarge" id="menu">
+  <div class="w3-content">
+    <h1 class="w3-center w3-jumbo" style="margin-bottom:64px"><b>MAP</b></h1>
+<center><div id="dvMap" style="width: 500px; height: 500px;"></div><p><br><br><strong>For communities with a population of between 20,000 to 100,000 ; 100 to 150 litres per head per day<br>
+For communities with a population of over 100,000 ; 150 to 200 litres per head per day.</strong></center></p>
+  </div>
+</div>
+
+<!-- Footer >
+<footer class="w3-center w3-black w3-padding-48 w3-xxlarge">
+  </footer-->
+
+
+
+</body>
+</html>
+

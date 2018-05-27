@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+(% load staticfiles %)
+<html>
+<title>HACKATHON</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
+
+<style>
+body, html {height: 100%}
+body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
+.menu {display: none}
+.bgimg {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-image: url("http://vunature.com/wp-content/uploads/2016/11/plants-blurred-focus-macro-nature-moss-wallpaper-download-hd-1920x1080.jpg");
+    height: 100%;
+}
+.abcd{
+
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+</style>
+<body>
+	<script>
+window.onload = function () {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	theme: "light2", // "light1", "light2", "dark1", "dark2"
+	title:{
+		text: ""
+	},
+	axisY: {
+		title: "Amount of water used(in millilitres)"
+	},
+	data: [{
+		type: "column",
+		showInLegend: true,
+		legendMarkerColor: "grey",
+		legendText: "Amount of water used from different water resources today",
+		dataPoints: [
+			{ y: 20 , label: "Primary Source" },
+			{ y: 15 ,  label: "Secondary Source" },
+			{ y: {{all_sensors.spw}} ,  label: "Drinking Water" },
+			{ y: 5 , label: "Secondary Purpose Water" },
+			{ y: 8 ,  label: "Teritary Purpose Water" },
+		]
+	}]
+});
+chart.render();
+}
+
+</script>
+<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<!-- Navbar (sit on top) -->
+<div class="w3-top w3-hide-small">
+  <div class="w3-bar w3-xlarge w3-black w3-opacity w3-hover-opacity-off" id="myNavbar" ><b>
+    <a href="#" class="w3-bar-item w3-button">HOME</a>
+    <a href="#menu" class="w3-bar-item w3-button">GRAPHS</a>
+    <!--a href="#about" class="w3-bar-item w3-button">PLANT DETAILS</a--></b>
+  </div>
+</div>
+
+<!-- Header with image -->
+<header class="bgimg w3-display-container w3-grayscale-min" id="home">
+  <div class="w3-display-bottomleft w3-padding">
+    <span class="w3-tag w3-xlarge"><b>Let's turn on water saving mode</b></span>
+  </div>
+  <div class="w3-display-middle w3-center">
+        <span class="w3-text-red w3-hide-small" style="font-size:50px"><b><a href="https://youtu.be/Q5N5ND_Zm_k">Click to know more about the project</a></b></span><br>
+        <span class="w3-text-red w3-hide-small" style="font-size:100px"><b>WATER MANAGEMENT</b></span>
+    <span class="w3-text-red w3-hide-large w3-hide-medium" style="font-size:60px"><b>WATER<br>MANAGeMENT</b></span>
+    <!--<p><a href="#menu" class="w3-button w3-xxlarge w3-black">Let me see the menu</a></p> -->
+  </div>
+</header>
+
+<!-- Menu Container -->
+<center>
+<div class="abcd w3-container w3-black w3-padding-64 w3-xxlarge" id="menu">
+  <div class="w3-content">
+    <h1 class="w3-center w3-jumbo" style="margin-bottom:64px"><b><u>GRAPHS</u></b></h1>
+      <!--a href="javascript:void(0)" onclick="openMenu(event, 'Temperature');" id="myLink"-->
+        <div class=" w3-padding-large w3-hover-red"><b><a href="index.html" target="_blank">Check how much <b>DRINKING water</b> you have used this week!</a></b></div>
+
+
+        <div class=" w3-padding-large w3-hover-red"><b><a href="second.html" target="_blank">Check how much <b>SECONDARY PURPOSE</b> water you have used this week!</a></b></div>
+
+        <div class=" w3-padding-large w3-hover-red"><b><a href="teri.html" target="_blank">Check how much <b>TERITIARY PURPOSE</b> water you have used this week!</a></b></div>
+	<br><br>
+</div>
+</div>
+</center>
+<center>
+<div class="abcd w3-container w3-gray w3-padding-64 w3-xxlarge" id="menu">
+  <div class="w3-content">
+    <h1 class="w3-center w3-jumbo" style="margin-bottom:64px"><b><u>DRINKING WATER TANK</u></b></h1>
+    <ul>
+        <li>Water Consumed :{{all_sensors.dw}}ml</li>
+                <li>Water level :{{all_sensors.spw}}cm</li>        <li>Turbidity :{{all_sensors.tpw}}NTU</li>
+    </ul>
+	<center></center>
+</div>
+</center>
+<center>
+<div class="abcd w3-container w3-white w3-padding-64 w3-xxlarge" id="menu">
+  <div class="w3-content">
+    <h1 class="w3-center w3-jumbo" style="margin-bottom:64px"><b><u>PRESENT VALUES OF WATER LEVEL OF WATER RESOURCES</u></b></h1>
+	<center><div id="chartContainer" style="height: 500px; width: 90%;" >{{all_sensors.ps}}</div> </center>
+</div>
+</center>
+<center>
+<div class="abcd w3-container w3-black w3-padding-64 w3-xxlarge" id="menu">
+  <div class="w3-content">
+    <h1 class="w3-center w3-jumbo" style="margin-bottom:64px"><b><u>SOCIETY MAP</u></b></h1>
+    <div class=" w3-padding-large w3-hover-red"><b><a href="maps.html" target="_blank">Check the map here</a></b></div>
+</div>
+</center>
+<!-- Footer -->
+<footer class="w3-center w3-gray w3-padding-32 w3-xxlarge">
+  </footer>
+
+</body>
+</html>
+
+

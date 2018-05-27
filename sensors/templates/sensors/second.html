@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script type="text/javascript">
+	window.onload = function () {
+
+      var dps = [{x: 1, y: 10}, {x: 2, y: 13}, {x: 3, y: 18}, {x: 4, y: 20}, {x: 5, y: 17},{x: 6, y: 10}, {x: 7, y: 13}, {x: 8, y: 18}, {x: 9, y: 20}, {x: 10, y: 14}];   //dataPoints. 
+
+      var chart = new CanvasJS.Chart("chartContainer",{
+
+      	axisX: {						
+      		title: "Date"
+      	},
+      	axisY: {						
+      		title: "Amount of water used(in litres)"
+      	},
+      	data: [{
+      		type: "line",
+      		dataPoints : dps
+      	}]
+      });
+
+      chart.render();
+	
+
+      var updateChart = function () {
+      	dps.push({x: xVal,y: yVal});
+      	chart.render();		
+};
+
+setInterval(function(){updateChart()}, updateInterval); 
+}
+</script>
+<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script> 
+</head>
+
+<title>Save Water</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
+
+<style>
+body, html {height: 100%}
+body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
+.menu {display: none}
+.bgimg {
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+
+}</style>
+<body>
+
+
+<!-- Menu Container -->
+<div class="bgimg w3-container w3-gray w3-padding-64 w3-xxlarge" id="menu">
+  <div class="w3-content">
+    <h1 class="w3-center w3-jumbo" style="margin-bottom:64px"><b>THE AMOUNT OF SECONDARY PURPOSE WATER YOU HAVE USED THIS WEEK IS PLOTTED DAY BY DAY:</b></h1>
+	<center><div id="chartContainer" style="height: 500px; width: 90%;" ></div> </center>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-48 w3-xxlarge">
+  </footer>
+
+
+
+</body>
+</html>
+
+

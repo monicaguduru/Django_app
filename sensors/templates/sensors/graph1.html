@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script>
+window.onload = function () {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	theme: "light2", // "light1", "light2", "dark1", "dark2"
+	
+	axisY: {
+		title: "Reserves(MMbbl)"
+	},
+	data: [{        
+		type: "column",  
+		showInLegend: true, 
+		legendMarkerColor: "grey",
+		legendText: "MMbbl = one million barrels",
+		dataPoints: [      
+			{ y: 30, label: "Venezuela" },
+			{ y: 26,  label: "Saudi" },
+			{ y: 16,  label: "Canada" },
+		]
+	}]
+});
+chart.render();
+
+}
+</script>
+<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script> 
+</head>
+
+<title>Save Water</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
+
+<style>
+body, html {height: 100%}
+body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
+.menu {display: none}
+.bgimg {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url("http://vunature.com/wp-content/uploads/2016/11/plants-blurred-focus-macro-nature-moss-wallpaper-download-hd-1920x1080.jpg");
+    min-height: 90%;
+
+}</style>
+<body>
+
+<!-- Navbar (sit on top) --<div class="w3-top w3-hide-small">
+  <div class="w3-bar w3-xlarge w3-black w3-opacity w3-hover-opacity-off" id="myNavbar" ><b>
+    <a href="#" class="w3-bar-item w3-button">HOME</a>
+    <a href="#about" class="w3-bar-item w3-button">PLANT DETAILS</a></b>
+  </div>
+</div>
+
+<!--Plants -->
+<footer class="w3-center w3-black w3-padding-48 w3-xxlarge">
+  </footer>
+
+<div class="w3-container w3-gray w3-padding-64 w3-xxlarge" id="about">
+  <div class="w3-content">
+    <h1 class="w3-center w3-jumbo" style="margin-bottom:64px"><b>GRAPH</b></h1>
+	<center><div id="chartContainer" style="height: 500px; width: 90%;"></div> </center>   
+	</div>
+</div>
+
+<footer class="w3-center w3-black w3-padding-48 w3-xxlarge">
+  </footer>
+
+</body>
+</html>
+
+
